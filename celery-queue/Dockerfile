@@ -6,6 +6,5 @@ ADD shared/proj /home/ubuntu/proj
 ADD celery-queue/data.tar.gz /home/ubuntu/
 WORKDIR /home/ubuntu/
 EXPOSE 5672
-#RUN celery -A proj worker -l info 
 ENTRYPOINT celery -A proj worker  --loglevel=info
 
