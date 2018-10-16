@@ -1,10 +1,18 @@
-version: '2'
+version: '3'
 services:
     rabbit:
         hostname: rabbit
         image: rabbitmq:latest
         ports:
             - "5672:5672"
+        environment:
+            - RABBITMQ_DEFAULT_USER=fabian
+            - RABBITMQ_DEFAULT_PASS=fabian
+        deploy:
+            placement:
+                constraints: [node.role == manager]
+        volumes:
+            - /var/run/docker.sock:/docker.sock
 
     web:
         build:

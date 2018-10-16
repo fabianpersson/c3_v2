@@ -2,3 +2,5 @@
 *.ipynb
 *.__pycache__/
 *.tar.gz
+*.tar
+.docker_temp
