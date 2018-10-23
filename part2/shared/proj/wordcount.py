@@ -5,7 +5,8 @@ class WordCount():
     
     def __init__(self, dictionary):
         self.dictionary = dictionary
-        self.tot_counter = dict.fromkeys(self.dictionary, 0)
+        self.pron_counter = dict.fromkeys(self.dictionary, 0)
+        self.tweet_counter = 0
         
     @staticmethod
     def clean(text):
@@ -20,5 +21,7 @@ class WordCount():
         counter = self.count(text_cleaned)
         
         for key in counter.iterkeys():
-            self.tot_counter[key] += counter[key]
+            self.pron_counter[key] += counter[key]
+            
+        self.tweet_counter += 1 
         

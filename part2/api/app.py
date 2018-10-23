@@ -23,8 +23,15 @@ def index():
     jobs = group(wordcounter_distributed.s(search_words, filename) for filename in file_list)
     result = jobs()
     res = result.get()
+    counter = 0
+    print(res)
     
-    
+    for r in res: #for each task
+        for search_word in r[0].iterkeys(): #for each key
+            tot_counter[search_word] += r[0][search_word]
+            counter += r[1]
+   
+    print(counter)
     #group()
     #for f in os.listdir(path):
     #    filename = os.path.join(path, f)
@@ -48,7 +55,7 @@ def index():
         #except Exception as e:
          #   print "error: {}".format(e)
           #  print "at task with id {}".format(res.id)
-    return jsonify(res)
+    return jsonify(tot_counter, counter)
 
 if __name__ == '__main__':
     

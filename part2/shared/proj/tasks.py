@@ -37,7 +37,7 @@ def wordcounter_distributed(search_words=False, filename=False):
                         tweet = json.loads(line)
                         vc.update_counter(tweet['text'])
                         
-        return vc.tot_counter         
+        return vc.pron_counter, vc.tweet_counter    
     except:
         print "file is {}".format(filename)
         
