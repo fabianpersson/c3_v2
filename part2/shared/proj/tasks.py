@@ -19,6 +19,8 @@ def wordcounter(search_words=False):
             for line in file:
                 if (line != '\n'):
                     tweet = json.loads(line)
+                    if (tweet['retweeted'] == 'true'):
+                        print('hej')
                     vc.update_counter(tweet['text'])
     return vc.tot_counter
 

@@ -15,6 +15,7 @@ services:
             - /var/run/docker.sock:/docker.sock
 
     web:
+        image: part2_web
         build:
             context: .
             dockerfile: ./api/Dockerfile
@@ -26,8 +27,12 @@ services:
             - rabbit
         ports:
             - "5000:5000"
+        deploy:
+            placement:
+                constraints: [node.role == manager]
 
     worker:
+        image: part2_worker
         build:
             context: .
             dockerfile: ./celery-queue/Dockerfile
